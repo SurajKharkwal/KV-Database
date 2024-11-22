@@ -34,15 +34,22 @@ app.post('/deleteKv', (req, res) => {
   const { key } = req.body;
   runCommand(
     `./kvstore deleteKv ${key}`,
-    (result) => res.send(result)
+    (result) => {
+      console.log(result);
+      res.send(result)
+    }
   );
 });
 
 app.post('/updateKv', (req, res) => {
   const { key, value } = req.body;
+  console.log(key, value)
   runCommand(
     `./kvstore updateKv ${key} ${value}`,
-    (result) => res.send(result)
+    (result) => {
+      console.log("Result: ", result);
+      res.send(result)
+    }
   );
 });
 
@@ -54,7 +61,7 @@ app.post('/searchKv', (req, res) => {
   );
 });
 
-app.get('/getAll', (req, res) => {
+app.get('/api/getAll', (req, res) => {
   runCommand(
     './kvstore getAll',
     (result) => res.send(result)

@@ -30,6 +30,7 @@ int main(int argc, char *argv[]) {
     }
     key = argv[2];
     OperationResult result = kvStore.deleteKv(key);
+    kvStore.saveData();
     std::cout << result.message << std::endl;
   } else if (command == "updateKv") {
     if (argc < 4) {
@@ -39,6 +40,7 @@ int main(int argc, char *argv[]) {
     key = argv[2];
     value = argv[3];
     OperationResult result = kvStore.updateKv(key, value);
+    kvStore.saveData();
     std::cout << result.message << std::endl;
   } else if (command == "loadData") {
     OperationResult result = kvStore.loadData();
